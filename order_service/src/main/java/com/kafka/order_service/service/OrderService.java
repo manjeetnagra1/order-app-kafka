@@ -3,14 +3,15 @@ package com.kafka.order_service.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kafka.order_service.model.Order;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-
-import java.time.Instant;
 
 @Service
 public class OrderService {
 
+    private static final Logger log = LoggerFactory.getLogger(OrderService.class);
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -23,7 +24,7 @@ public class OrderService {
             String json = mapper.writeValueAsString(order);
             kafkaTemplate.send("order-events", json);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            log.error("JsonProcessingException: {}", e.getMessage(), e);
         }
     }
 

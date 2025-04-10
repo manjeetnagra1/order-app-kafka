@@ -22,14 +22,15 @@ public class InventoryService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void processInventory(Order order) {
+    public void processInventory(Order order) throws JsonProcessingException {
         try {
             Order savedOrder = repository.save(order);
             String message = objectMapper.writeValueAsString(savedOrder);
             kafkaTemplate.send("notification-events", message);
             log.info("Sent inventory event to Kafka: {}", message);
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             log.error("Failed to serialize inventory event", e);
+            throw e;
         }
     }
 }

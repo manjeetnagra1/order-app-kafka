@@ -1,5 +1,6 @@
 package com.kafka.inventory_service.consumer;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kafka.inventory_service.model.Order;
 import com.kafka.inventory_service.service.InventoryService;
@@ -19,14 +20,15 @@ public class OrderConsumer {
         this.service = service;
     }
 
-    @KafkaListener(topics = "order-events", groupId = "inventory-group")
-    public void consumeOrder(String message)  {
+    @KafkaListener(topics = "order-events", groupId = "inventory-group", containerFactory = "kafkaListenerContainerFactory")
+    public void consumeOrder(String message) throws JsonProcessingException {
         try {
             Order event = mapper.readValue(message, Order.class);
             log.info("Order Received: {}", event);
             service.processInventory(event);
         }catch (Exception e){
             log.error("Unexpected error consuming message: {}", message, e);
+            throw e;
         }
 
     }

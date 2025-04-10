@@ -2,8 +2,10 @@ package com.kafka.notification_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"com.kafka.inventory_service", "com.kafka.config"})
 public class NotificationServiceApplication {
 
 	public static void main(String[] args) {
