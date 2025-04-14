@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.kafka.inventory_service", "com.kafka.config"})
+@ComponentScan(basePackages = {"com.kafka.notification_service", "com.kafka.config"})
 public class NotificationServiceApplication {
 
 	public static void main(String[] args) {
