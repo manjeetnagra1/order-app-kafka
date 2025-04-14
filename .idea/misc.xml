@@ -8,10 +8,15 @@
         <option value="$PROJECT_DIR$/payment_service/pom.xml" />
         <option value="$PROJECT_DIR$/inventory_service/pom.xml" />
         <option value="$PROJECT_DIR$/notification_service/pom.xml" />
+        <option value="$PROJECT_DIR$/kafka-common-config/pom.xml" />
+        <option value="$PROJECT_DIR$/cinfig/pom.xml" />
+        <option value="$PROJECT_DIR$/config/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/kafka-common-config/pom.xml" />
         <option value="$PROJECT_DIR$/payment_service/pom.xml" />
       </set>
     </option>

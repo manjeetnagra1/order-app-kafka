@@ -22,15 +22,17 @@ public class NotificationConsumer {
     }
 
     @KafkaListener(topics = "notification-events", groupId = "notification-group")
-    public void notificationConsumer(String message) {
+    public void notificationConsumer(String message) throws JsonProcessingException {
         try {
             Order order = objectMapper.readValue(message, Order.class);
             log.info("Received notification event: {}", order);
             emailService.sendOrderConfirmation(order);
         } catch (JsonProcessingException e) {
             log.error("Failed to deserialize message: {}", message, e);
+            throw e;
         } catch (Exception e) {
             log.error("Unexpected error while processing message: {}", message, e);
+            throw e;
         }
     }
 }
