@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kafka.inventory_service.model.Order;
 import com.kafka.inventory_service.service.InventoryService;
+import com.kafka.inventory_service.service.InventoryServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -16,7 +17,7 @@ public class OrderConsumer {
     private final InventoryService service;
     private final ObjectMapper mapper = new ObjectMapper();
 
-    public OrderConsumer(InventoryService service) {
+    public OrderConsumer(InventoryServiceImpl service) {
         this.service = service;
     }
 

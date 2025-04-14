@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.kafka.order_service.dto.ResponseDTO;
 import com.kafka.order_service.model.Order;
 import com.kafka.order_service.service.OrderService;
+import com.kafka.order_service.service.OrderServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/order")
 public class OrderController {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
     private final OrderService service;
 
-    public OrderController(OrderService service) {
+    public OrderController(OrderServiceImpl service) {
         this.service = service;
     }
 
