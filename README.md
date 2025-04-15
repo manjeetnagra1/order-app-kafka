@@ -42,6 +42,6 @@ This project is divided into three microservices
 {
   "product": "iPhone 15",
   "quantity": 1,
-  "email": "john.doe@example.com",
-  "address": "123 Main Street, NY"
+  "email": "manjeetsinghwins@gmail.com",
+  "address": "D140 7 phase Mohali"
 }
