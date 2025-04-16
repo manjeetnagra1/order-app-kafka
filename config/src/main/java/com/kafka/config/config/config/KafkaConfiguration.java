@@ -1,4 +1,4 @@
-package com.kafka.config;
+package com.kafka.config.config.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.TopicPartition;
