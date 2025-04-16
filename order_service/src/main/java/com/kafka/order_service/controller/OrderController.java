@@ -32,7 +32,7 @@ public class OrderController {
             order.setStatus("Order Created");
             service.sendOrderEvent(order);
             responseDTO.setStatus(200);
-            responseDTO.setMessage("Order Placed");
+            responseDTO.setMessage("Order Placed you will receive a email once its confirmed");
 
             return ResponseEntity.ok(responseDTO);
         } catch (Exception e) {
