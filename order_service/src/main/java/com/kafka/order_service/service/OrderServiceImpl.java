@@ -22,9 +22,14 @@ public class OrderServiceImpl implements OrderService {
     public void sendOrderEvent(Order order) {
         try {
             String json = mapper.writeValueAsString(order);
+            log.info("Preparing to send order event. Order ID: {}, Order details: {}", order.getOrderId(), json);
             kafkaTemplate.send("order-events", json);
-        } catch (JsonProcessingException e) {
-            log.error("JsonProcessingException: {}", e.getMessage(), e);
+            log.info("Successfully sent order event to 'order-events' topic. Order ID: {}", order.getOrderId());
+        }catch (JsonProcessingException e) {
+            log.error("Failed to serialize Order to JSON. Order ID: {}, Error: {}", order.getOrderId(), e.getMessage(), e);
+        } catch (Exception e) {
+            log.error("Unexpected error occurred while sending order event. Order ID: {}, Error: {}", order.getOrderId(), e.getMessage(), e);
+            throw e;
         }
     }
 
